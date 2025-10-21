@@ -1,0 +1,15 @@
+# /opt/qqbot/qqbot_webhook.service
+[Unit]
+Description=QQ Bot Webhook (FastAPI)
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/opt/qqbot	# 替换为你的service文件的地址
+
+ExecStart=/opt/qqbot/.venv/bin/uvicorn qqbot_webhook:app --host 127.0.0.1 --port 6196	# 替换为你的uvicorn文件地址
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
